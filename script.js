@@ -10,7 +10,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     calculateDoses();
   });
-    var msg = [];
+
     function calculateDoses () {
         var flag = 0;
 
@@ -46,12 +46,12 @@ window.addEventListener("DOMContentLoaded", function () {
 
         if(updatePSA === "No")
         {
-            flag = 1;
-            document.getElementById("newTestosteroneDose").textContent= lastTestosteroneDose + "mg Pellets";
+            var divElement = document.getElementById("appendcontent");
 
-            appendcontent.innerHTML = "<p> AUA recommends annual PSA test over 55 years of age.</p>";
+            var pElement = document.createElement("p");
+            pElement.textContent = "AUA recommends annual PSA test over 55 years of age.";
+            divElement.appendChild(pElement);
 
-            // return;
         }
 
         if(flag!=1 && symptompRelief==="Yes" && (sleepIssues || nightSweats || moodiness || lowLibido || brainFrog || jointPain || depressionAnxiety || farigue || other))
@@ -59,8 +59,6 @@ window.addEventListener("DOMContentLoaded", function () {
             flag = 1;
             document.getElementById("newTestosteroneDose").textContent= lastTestosteroneDose + "mg Pellets";
 
-            appendcontent.innerHTML = "";
-            // return;
         }
 
         if(flag !=1 && symptompRelief === "No")
@@ -69,9 +67,12 @@ window.addEventListener("DOMContentLoaded", function () {
             var newTestosteroneDose = lastTestosteroneDose + 200;
             document.getElementById("newTestosteroneDose").textContent= newTestosteroneDose + "mg Pellets";
 
-            appendcontent.innerHTML = "<p> Dosage is increased one level due to lack of symptom relief.</p>";
 
-            // return;
+            let p = document.createElement("p");
+            p.textContent = "Dosage is increased one level due to lack of symptom relief.";
+            divElement.appendChild(p);
+
+
         }
 
         if(flag!=1 && symptompRelief === "Yes")
@@ -85,7 +86,10 @@ window.addEventListener("DOMContentLoaded", function () {
             }
             document.getElementById("newTestosteroneDose").textContent= newTestosteroneDose + "mg Pellets";
 
-            appendcontent.innerHTML = "<p> Dosage is decreased one level due to symptom relief</p>";
+
+            let p = document.createElement("p");
+            p.textContent = "Dosage is decreased one level due to symptom relief.";
+            divElement.appendChild(p);
         }
 
 
